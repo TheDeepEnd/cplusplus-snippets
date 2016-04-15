@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-void taxConverter (float, float, float&);
+void taxConverter (float, float&, float&);
 
 int main (int argc, char* argv[])
 {
@@ -28,11 +28,13 @@ cout.precision: Sets the decimal precision to be used to format floating-point
 */
     std::cout << "Please enter the total amount of your bill: \n";
     std::cin >> bill;
-    std::cout << "Please enter in the tax percentage as a decimal: \n";
+    std::cout << "Please enter in the percentage that you would like to tip: \n";
     std::cin >> tax;
     taxConverter(bill, tax, totalCost);
     std::cout.precision(5);
     std::cout << "The total cost of your bill is: $" << totalCost << "\n";
+    std::cout.precision(5);
+    std::cout << "The tip total is: $" << tax << "\n";
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -50,9 +52,12 @@ cout.precision: Sets the decimal precision to be used to format floating-point
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void taxConverter (float bill, float tax, float& totalCost)
+void taxConverter (float bill, float& tax, float& totalCost)
 {
-    float taxTotal;
-    taxTotal = bill * tax;
-    totalCost = taxTotal + bill;
+
+    tax = tax / 100;
+
+    tax = bill * tax;
+
+    totalCost = tax + bill;
 }
