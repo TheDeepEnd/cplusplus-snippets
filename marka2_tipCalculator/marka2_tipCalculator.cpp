@@ -27,14 +27,30 @@ cout.precision: Sets the decimal precision to be used to format floating-point
 :: This operator is a scope qualifier that is defines the function of cout in the class std.
 */
     std::cout << "Please enter the total amount of your bill: \n";
-    std::cin >> bill;
-    std::cout << "Please enter in the percentage that you would like to tip: \n";
-    std::cin >> tax;
-    taxConverter(bill, tax, totalCost);
-    std::cout.precision(5);
-    std::cout << "The total cost of your bill is: $" << totalCost << "\n";
-    std::cout.precision(5);
-    std::cout << "The tip total is: $" << tax << "\n";
+    if (!(std::cin >> bill))
+    {
+        std::cout << "\n\n";
+        std::cout << "Please follow the directions and put in numbers!\n\n";
+        std::cout << "The program is terminating, please follow instructions next time..\n\n";
+    }
+    else
+    {
+        std::cout << "Please enter in the percentage that you would like to tip: \n";
+        if (!(std::cin >> tax))
+        {
+            std::cout << "Please follow the directs and put in numbers!\n\n";
+            std::cout << "The program is terminating, please follow instructions next time..\n\n";
+
+        }
+        else
+        {
+            taxConverter(bill, tax, totalCost);
+            std::cout.precision(5);
+            std::cout << "The total cost of your bill is: $" << totalCost << "\n";
+            std::cout.precision(5);
+            std::cout << "The tip total is: $" << tax << "\n";
+        }
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
